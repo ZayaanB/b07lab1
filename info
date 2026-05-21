@@ -1,1 +1,3 @@
 This is my submission for CSCB07's Lab 1 in the 2026 Summer Term
+
+It asks me to make a class for polynomials with 2 constructors: one with no parameters and one with a double array. It also asks me to implement methods such as adding polynomials, evaluating, and checking if a number is a root.
