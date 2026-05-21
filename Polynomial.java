@@ -35,11 +35,16 @@ public class Polynomial
         return total;
     }
 
-    public int hasRoot()
+    public bool hasRoot(double solution)
     {
-        // to be done later
-        int roots = 1;
+        int length = len(this.coefficients);
+        double total = 0;
 
-        return roots;
+        for(int i = 0; i < length; i++)
+        {
+            total += this.coefficients[i]*Math.pow(solution, i);
+        }
+
+        return total == 0;
     }
 }
