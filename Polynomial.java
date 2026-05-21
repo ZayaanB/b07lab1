@@ -1,3 +1,5 @@
+import java.lang.Math;
+
 public class Polynomial
 {
     double[] coefficients;
@@ -7,44 +9,42 @@ public class Polynomial
         coefficients = new double[]{0};
     }
 
-    public Polynomial(double coefficients)
+    public Polynomial(double[] coefficients)
     {
         this.coefficients = coefficients;
     }
 
-    public void add(Polynomial other_Polynomial)
+    public Polynomial add(Polynomial other_polynomial)
     {
-        length = min(len(other_polynomial.coefficients), len(this.coefficients));
+        int length = Math.max(this.coefficients.length, other_polynomial.coefficients.length);
+        double[] result = new double[length];
 
-        for(int i = 0; i < length; i++)
-        {
-            this.coefficients[i] += other_polynomial.coefficients;
+        for (int i = 0; i < this.coefficients.length; i++) {
+            result[i] = this.coefficients[i];
         }
+
+        for (int i = 0; i < other_polynomial.coefficients.length; i++) {
+            result[i] += other_polynomial.coefficients[i];
+        }
+
+        return new Polynomial(result);
     }
 
     public double evaluate(double x)
     {
         double total = 0;
-        length = len(this.coefficients);
+        int length = this.coefficients.length;
 
         for(int i = 0; i < length; i++)
         {
-            total += this.coefficients[i]*x;
+            total += this.coefficients[i]*Math.pow(x, i);
         }
 
         return total;
     }
 
-    public bool hasRoot(double solution)
+    public boolean hasRoot(double solution)
     {
-        int length = len(this.coefficients);
-        double total = 0;
-
-        for(int i = 0; i < length; i++)
-        {
-            total += this.coefficients[i]*Math.pow(solution, i);
-        }
-
-        return total == 0;
+        return this.evaluate(solution) == 0;
     }
 }
